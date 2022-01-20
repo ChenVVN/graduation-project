@@ -40,9 +40,10 @@ export default {
   data() {
     return {
       colEntity: [
-        { propName: "id", labelName: "ID" },
-        { propName: "name", labelName: "应用" },
-        { propName: "name_zh", labelName: "应用（中）" },
+        { propName: "id", labelName: "ID", width: "100px" },
+        { propName: "short", labelName: "简称" },
+        { propName: "fullname_en", labelName: "材料种类" },
+        { propName: "fullname_zh", labelName: "材料种类（中）" },
         { propName: "create_time", labelName: "时间", class: "z_time_style" },
         { propName: "opr", labelName: "操作", isSlot: true },
       ],
@@ -51,5 +52,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="scss">
+.main-body {
+  margin: 8px;
+}
 </style>

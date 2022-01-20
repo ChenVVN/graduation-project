@@ -2,38 +2,49 @@
   <div>
     <top-bar>
       <div class="left-part">
-        <el-input placeholder="搜索" size="small"></el-input>
+        <el-input placeholder="搜索" size="small" class="base-input"></el-input>
+        <el-button size="small">刷新</el-button>
       </div>
       <div class="right-part">
         <div class="item">
-          <svg-icon icon-class="add"></svg-icon>
+          <i class="el-icon-circle-plus"></i>
           <p class="text">添加</p>
         </div>
       </div>
     </top-bar>
+
     <el-card class="main-body">
-      <easy-table :col-entity="colEntity"></easy-table>
+      <easy-table :col-entity="colEntity">
+        <template #opr>
+          <el-button
+            size="mini"
+            type="danger"
+            circle
+            icon="el-icon-edit"
+            title="修改"
+            @click="readyToUpdate"
+          ></el-button>
+        </template>
+      </easy-table>
     </el-card>
   </div>
 </template>
 
 <script>
-import TopBar from "@/components/TopBar/Index.vue";
 import EasyTable from "@/components/EasyTable/Index";
 export default {
   components: {
-    TopBar,
     EasyTable,
   },
   data() {
     return {
       colEntity: [
-        { propName: 'id', labelName: 'ID', width: '100px' },
-        { propName: 'short', labelName: '简称' },
-        { propName: 'fullname_en', labelName: '英文全称' },
-        { propName: 'fullname_zh', labelName: '中文全称'},
-        { propName: 'create_time', labelName: '时间', class: 'z_time_style' },
-        { propName: 'operation', labelName: '操作',  width: '100px', isSlot: true },
+        { propName: "id", labelName: "ID", width: "100px" },
+        { propName: "title", labelName: "标题" },
+        { propName: "categories", labelName: "类别" },
+        { propName: "grade", labelName: "型号" },
+        { propName: "create_time", labelName: "时间", class: "z_time_style" },
+        { propName: "opr", labelName: "操作", isSlot: true },
       ],
     };
   },

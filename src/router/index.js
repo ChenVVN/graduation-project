@@ -36,6 +36,11 @@ export const constantRoutes = [
     component: () => import("@/views/login/index"),
     hidden: true,
   },
+  {
+    path: "/register",
+    component: () => import("@/views/register/index"),
+    hidden: true,
+  },
 
   {
     path: "/404",
@@ -69,7 +74,13 @@ export const constantRoutes = [
         path: "list",
         name: "DatasheetList",
         component: () => import("@/views/Datasheet/DatasheetList"),
-        meta: { title: "材料总类", icon: "sort" },
+        meta: { title: "物性表列表", icon: "sort" },
+      },
+      {
+        path: "filler",
+        name: "filler",
+        component: () => import("@/views/Datasheet/FillerList"),
+        meta: { title: "填充物", icon: "nested" },
       },
     ],
   },
@@ -85,19 +96,19 @@ export const constantRoutes = [
         path: "list",
         name: "classification",
         component: () => import("@/views/Application/Classification.vue"),
-        meta: { title: "应用类别", icon: "sort" },
+        meta: { title: "应用分类", icon: "sort" },
       },
     ],
   },
   {
-    path: "/filler",
+    path: "/categories",
     component: Layout,
     children: [
       {
-        path: "index",
-        name: "filler",
-        component: () => import("@/views/Datasheet/FillerList"),
-        meta: { title: "填充物", icon: "nested" },
+        path: "list",
+        name: "categories",
+        component: () => import("@/views/Categories/CategoriesList"),
+        meta: { title: "材料种类", icon: "nested" },
       },
     ],
   },
