@@ -23,7 +23,6 @@
           name="username"
           type="text"
           tabindex="1"
-          auto-complete="on"
         />
       </el-form-item>
 
@@ -39,7 +38,6 @@
           placeholder="Password"
           name="password"
           tabindex="2"
-          auto-complete="on"
           @keyup.enter.native="handleLogin"
         />
         <span class="show-pwd" @click="showPwd">
@@ -63,37 +61,19 @@
 </template>
 
 <script>
-import { validUsername } from "@/utils/validate";
-
 export default {
   name: "Login",
   data() {
-    const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
-        callback(new Error("Please enter the correct user name"));
-      } else {
-        callback();
-      }
-    };
-    const validatePassword = (rule, value, callback) => {
-      if (value.length < 6) {
-        callback(new Error("The password can not be less than 6 digits"));
-      } else {
-        callback();
-      }
-    };
     return {
       loginForm: {
-        username: "admin",
-        password: "111111",
+        username: "",
+        password: "",
       },
       loginRules: {
         username: [
-          { required: true, trigger: "blur", validator: validateUsername },
+          { required: true, trigger: "blur", message: "请输入用户名" },
         ],
-        password: [
-          { required: true, trigger: "blur", validator: validatePassword },
-        ],
+        password: [{ required: true, trigger: "blur", message: "请输入密码" }],
       },
       loading: false,
       passwordType: "password",
@@ -126,7 +106,7 @@ export default {
           this.$store
             .dispatch("user/login", this.loginForm)
             .then(() => {
-              this.$router.push({ path: this.redirect || "/" });
+              this.$router.push({ path: "/" });
               this.loading = false;
             })
             .catch(() => {
@@ -156,6 +136,12 @@ $cursor: #fff;
   }
 }
 
+input:-internal-autofill-previewed,
+input:-internal-autofill-selected {
+  -webkit-text-fill-color: #FFFFFF !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+}
+
 /* reset element-ui css */
 .login-container {
   .el-input {
@@ -172,11 +158,6 @@ $cursor: #fff;
       color: $light_gray;
       height: 47px;
       caret-color: $cursor;
-
-      &:-webkit-autofill {
-        box-shadow: 0 0 0px 1000px $bg inset !important;
-        -webkit-text-fill-color: $cursor !important;
-      }
     }
   }
 
@@ -210,18 +191,18 @@ $light_gray: #eee;
     overflow: hidden;
   }
 
-.base-line {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-  .btn {
-    margin: 0 auto;
+  .base-line {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    .btn {
+      margin: 0 auto;
+    }
+    .text {
+      color: #e7e7e7;
+      margin-top: 10px;
+    }
   }
-  .text {
-    color: #e7e7e7;
-    margin-top: 10px;
-  }
-}
   .svg-container {
     padding: 6px 5px 6px 15px;
     color: $dark_gray;

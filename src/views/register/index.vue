@@ -47,11 +47,7 @@
       </el-form-item>
 
       <div class="base-line">
-        <el-button
-          :loading="loading"
-          type="primary"
-          class="btn"
-          @click.native.prevent="handleLogin"
+        <el-button type="primary" class="btn" @click.native.prevent="Register"
           >注册</el-button
         >
         <router-link class="text" to="/login">返回登录></router-link>
@@ -61,9 +57,12 @@
 </template>
 
 <script>
+import { register } from "@/api/user";
+
 export default {
   data() {
     return {
+      baseURL: "http://127.0.0.1:8000/",
       form: {
         username: "",
         password: "",
@@ -71,6 +70,22 @@ export default {
         mobile: "",
       },
     };
+  },
+  methods: {
+    async Register() {
+      try {
+        const { code } = await register(this.form);
+        if (code === 0) {
+          this.$message({
+            type: "success",
+            message: `注册成功`,
+          });
+          this.$router.push('/login')
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    },
   },
 };
 </script>
