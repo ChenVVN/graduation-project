@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: '1',
+  title: '高分子材料信息管理系统',
 
   /**
    * @type {boolean} true | false

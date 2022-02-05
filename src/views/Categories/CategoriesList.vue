@@ -42,7 +42,7 @@ export default {
       colEntity: [
         { propName: "id", labelName: "ID", width: "100px" },
         { propName: "short", labelName: "简称" },
-        { propName: "fullname_en", labelName: "材料种类" },
+        { propName: "fullname", labelName: "材料种类" },
         { propName: "fullname_zh", labelName: "材料种类（中）" },
         { propName: "create_time", labelName: "时间", class: "z_time_style" },
         { propName: "opr", labelName: "操作", isSlot: true },
